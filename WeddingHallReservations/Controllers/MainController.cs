@@ -593,6 +593,11 @@ namespace WeddingHallReservations.Controllers
           
         }
 
+
+
+
+
+
         public IActionResult Logout()
         {
             sId = 0;
