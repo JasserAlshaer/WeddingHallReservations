@@ -1,0 +1,64 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+	 Layout=null;
+}
+<!DocType html>
+<html>
+    <head>
+        <link rel="stylesheet" href="~/css/rigster.css">
+    </head>
+   <body>
+       <div class="wrapper">
+           <form asp-action="Redirect" method="get">
+                <div class="form-left">
+            <h2 class="text-uppercase">information</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et molestie ac feugiat sed. Diam volutpat commodo.
+            </p>
+            <p class="text">
+                <span>Sub Head:</span>
+                Vitae auctor eu augudsf ut. Malesuada nunc vel risus commodo viverra. Praesent elementum facilisis leo vel.
+            </p>
+            <div class="form-field">
+                 
+                <input type="submit" class="account" value="Back To Home">
+            </div>
+        </div>
+           </form>
+       
+        <form asp-action="Register" method="post" class="form-right">
+            <h2 class="text-uppercase">Registration form</h2>
+            <div class="row">
+                <div class="col-sm-12 mb-3">
+                    <label>Name</label>
+                    <input type="text" name="name" placeholder="Zaid" id="first_name" class="input-field">
+                </div>
+                
+            </div>
+            <div class="mb-3">
+                <label>Your Phone</label>
+                <input type="tel" class="input-field" placeholder="0791248519" name="phone" required>
+            </div>
+            <div class="mb-3">
+                <label>Your Email</label>
+                <input type="email" class="input-field" placeholder="zaid@gmail.com" name="email" required>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 mb-3">
+                    <label>Password</label>
+                    <input type="password" placeholder="********" name="password" id="pwd" class="input-field">
+                </div>
+                <span style="font-size:8px; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">Password Must be at least 8 Words</span>
+            </div>
+            <div class="form-field">
+                <input type="submit" value="Register" class="register" name="register">
+            </div>
+        </form>
+    </div>
+   </body>
+
+</html>
+
+

@@ -1,0 +1,125 @@
+﻿@model IEnumerable<WeddingHallReservations.Models.WService>;
+@{
+	Layout="_Layout";
+    ViewData["Title"] = ViewBag.button;
+}
+   <img src="~/Assets/Photos/bg-1.jpg" class="hero-wrap js-fullheight" />
+
+    
+    <section class="ftco-section ftco-degree-bg">
+      <div class="container">
+        <div class="row">
+        	<div class="col-lg-3 sidebar">
+        		<div class="sidebar-wrap bg-light ftco-animate">
+        			<h3 class="heading mb-4">Find Service</h3>
+        			<form asp-action="SearchPost" method="post">
+        				<div class="fields">
+		              <div class="form-group">
+		                <input type="text" class="form-control" name="ServiceProvidedName" placeholder="Name">
+		              </div>
+		              <div class="form-group">
+		                <div class="select-wrap one-third">
+	                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+	                    <select name="Address" id="" class="form-control" placeholder="Keyword search">
+	                      <option value="">Select Location</option>
+	                      <option value="Amman">Amman</option>
+	                      <option value="Salt">Salt</option>
+	                      <option value="Az-Zarqa">Az-Zarqa</option>
+	                      <option value="Irbid">Irbid</option>
+	                    </select>
+	                  </div>
+		              </div>
+
+                      <div class="form-group">
+		                <div class="select-wrap one-third">
+	                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+	                    <select name="categoryId" id="" class="form-control" placeholder="Keyword search">
+	                     <option value="null">Category</option>
+                               <option value="1">Halls</option>
+                               <option value="3">Cars</option>
+                               <option value="4">Sweet</option>
+                                <option value="2">Musican</option>
+	                    </select>
+	                  </div>
+		              </div>
+                      <div class="form-group">
+		                <input type="text" class="form-control" name="startPrice" placeholder="300$">
+		              </div>
+		            </div>
+		              
+		              
+		              <div class="form-group">
+		                <input type="submit" value="Search" class="btn btn-primary py-3 px-5">
+		              </div>
+		           
+	            </form>
+        		</div>
+        	
+          </div>
+          <div class="col-lg-9">
+          	<div class="row">
+				  @foreach (var item in Model)
+				 {
+					  <div class="col-md-4 ftco-animate">
+    				<div class="destination">
+                        
+    					<img class="border img img-2 d-flex justify-content-center align-items-center" src="~/Uploads/@item.Service.ProfileImage" alt="image" width="255"/>
+    					<div class="text p-3">
+    						<p><a asp-controller="Main" asp-action="Details"
+                                asp-route-serviceId="@item.Service.ServiceId">
+                                <i class="fa fa-heart"></i>
+                                @item.Service.ServiceProvided</a></p>
+
+    						<p>
+          
+                                <i class="fa fa-money"></i>
+                                Start From : @item.Service.StartingPrice $
+                            </p>
+
+                            <p>
+                                <i class="fa fa-phone"></i>
+                                @item.Service.PhoneNumber
+                            </p>
+                            <p>
+                                <i class="fa fa-location-arrow"></i>
+                                @item.Service.Address
+                            </p>
+    						<hr>
+    						<p class="bottom-area d-flex">
+    							
+    							<span class="btn badge-success" style="width:100%;">
+                                    
+                                    <a asp-controller="Main" asp-action="Details"
+                                asp-route-serviceId="@item.Service.ServiceId">
+                                    View
+                                    <i class="fa fa-eye"></i>    
+                                    </a>
+                                    
+                                </span>
+    						</p>
+    					</div>
+    				</div>
+    			</div>
+				 }
+          		
+
+          	</div>
+          	@*<div class="row mt-5">
+		          <div class="col text-center">
+		            <div class="block-27">
+		              <ul>
+		                <li><a href="#">&lt;</a></li>
+		                <li class="active"><span>1</span></li>
+		                <li><a href="#">2</a></li>
+		                <li><a href="#">3</a></li>
+		                <li><a href="#">4</a></li>
+		                <li><a href="#">5</a></li>
+		                <li><a href="#">&gt;</a></li>
+		              </ul>
+		            </div>
+		          </div>
+		        </div>*@
+          </div> <!-- .col-md-8 -->
+        </div>
+      </div>
+    </section> <!-- .section -->

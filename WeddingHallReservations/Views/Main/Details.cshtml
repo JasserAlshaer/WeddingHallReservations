@@ -1,0 +1,271 @@
+﻿@model WeddingHallReservations.Models.WServiceDetails;
+@{
+    Layout="_Layout";
+    ViewData["Title"] = ViewBag.button;
+    var list = ViewBag.MyCartList as Dictionary<int, int>;
+    var tot=ViewBag.totalPrice;
+}
+
+
+ <img src="~/Assets/Photos/bg-1.jpg" class="hero-wrap js-fullheight" />
+
+    
+    <section class="ftco-section ftco-degree-bg">
+      <div class="container">
+        <div class="row">
+        	
+          <div class="offset-2 col-lg-10">
+          	<div class="row">
+          		<div class="col-md-12 ftco-animate">
+          			<div class="single-slider owl-carousel">
+						 @foreach (var item in Model.ProdouctInfo)
+						{
+							@foreach (var item2 in item.Medias)
+						   {
+							  <div class="item">
+          					     <img class="hotel-img border" height="350" style="padding:25px; border-radius:10px;" src="~/Uploads/@item2.ImagePath"/>
+          				      </div>
+						   }
+							  
+						}
+          				
+          				
+          			</div>
+          		</div>
+          		<div class="col-md-12 hotel-single mt-4 mb-5 ftco-animate">
+          			<span>One of The Best Our @Model.Catregory.Name </span>
+          			<h2>@Model.Service.ServiceProvided</h2>
+          			<p class="rate mb-5">
+          				<span class="loc"><a href="#"><i class="fa fa-location-arrow"></i>@Model.Service.Address</a></span>
+    						</p>
+							<p>
+						     <i class="fa fa-bookmark"></i>
+								@Model.Catregory.Name
+							</p>
+    						<p>
+								<i class="fa fa-phone"></i>
+								@Model.Service.PhoneNumber
+							</p>
+							<p>
+								<i class="fa fa-envelope"></i>
+								@Model.Service.Email
+							</p>
+
+@*    						<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric
+                                question ran over her cheek, then she continued her way.</p>*@
+          		</div>
+@*          		<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
+          			<h4 class="mb-4">Take A Tour</h4>
+          			<div class="block-16">
+		              <figure>
+		                <img src="~/Assets/images/hotel-6.jpg" alt="Image placeholder" class="img-fluid">
+		                <a href="https://vimeo.com/45830194" class="play-button popup-vimeo"><span class="icon-play"></span></a>
+		              </figure>
+		            </div>
+          		</div>*@
+          		<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
+          			<h4 class="mb-4">Our Products</h4>
+          			<div class="row">
+			       @foreach (var item3 in Model.ProdouctInfo)
+                   {
+                   <div class="col-lg-4 ftco-animate">
+    				<div class="destination">
+                        
+    					
+                         @foreach (var item in Model.ProdouctInfo)
+						{
+							@foreach (var item2 in item.Medias)
+						   {
+                               @if(item2.IsMain==true){
+                                    <div class="item">
+          					     <img class="border img img-2 d-flex justify-content-center align-items-center" src="~/Uploads/@item2.ImagePath" alt="image" width="277"/>
+          				      </div>
+                               }
+							 
+						   }
+							  
+						}
+    					<div class="text p-3">
+    						<p><a href="#">
+                                <i class="fa fa-heart"></i>
+                                Name : @item3.Prodouct.Name</a></p>
+
+    						<p>
+          
+                                <i class="fa fa-money"></i>
+                                Start From : @item3.Prodouct.PricePerOne $
+                            </p>
+
+                            <p>
+                                <i class="fa fa-numeric"></i>
+                                Available Quantity : @item3.Prodouct.Quantity
+                            </p>
+                            @if (list.ContainsKey(@item3.Prodouct.ProductId) == true){
+                             <p >
+                               
+                                Selected Quantity :  @list[@item3.Prodouct.ProductId]
+                            </p>
+                            }
+                            
+                            
+    						<hr>
+    						<p class="bottom-area d-flex">
+    							
+    							
+
+                                 
+                                    
+                                    <a asp-controller="Main" asp-action="ManageListOfProdcts"
+                                       asp-route-productId="@item3.Prodouct.ProductId"
+                                       asp-route-bit="10"
+                                       asp-route-quantity="1"
+                                     style="margin-left:20px;">
+                                       <span class="btn badge-success" style="width:100%;">
+                                            Add
+                                    <i class="fa fa-plus text-center"></i>
+                                        </span>
+                                   
+                                    </a>
+                                    
+                                <br>
+                               
+                                    
+                                    <a asp-controller="Main" asp-action="ManageListOfProdcts"
+                                       asp-route-productId="@item3.Prodouct.ProductId"
+                                       asp-route-bit="1"
+                                        asp-route-quantity="1"
+                                       style="margin-left:50px;"
+                                    >
+                                     <span class="btn badge-danger" style="width:100%;">
+                                          Remove
+                                    <i class="fa fa-trush text-center"></i>
+                                </span>
+                                    </a>
+                                    
+    						</p>
+    					</div>
+    				</div>
+    			</div>
+               }
+          			</div>
+          		</div>
+          		
+          		
+          		
+
+          	</div>
+          </div> <!-- .col-md-8 -->
+       
+		  <div class="offset-2 col-10 hotel-single ftco-animate mb-5 mt-4">
+          			<h4 class="mb-5">Booking Your Service</h4>
+                       <h4 class="mb-5">Total Price = @tot</h4>
+                      <form asp-action="DataServed" method="post" >
+          			<div class="fields">
+          				<div class="row">
+          				
+			            
+			              
+
+			              
+				            <div class="col-md-12">
+				              <div class="form-group">
+				                <button type="button" data-toggle="modal" data-target="#staticBackdrop"  class="btn btn-primary py-3">
+                                Submit Reservation Reqest    
+                                </button>
+				              </div>
+			              </div>
+		              </div>
+		            </div>
+                    </form>
+          		</div>
+
+	    </div>
+      </div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog"> 
+        <div class="modal-content"> 
+            <div class="modal-body"> 
+                <div class="text-right"> 
+                    <i class="fa fa-close close" data-dismiss="modal"></i>
+                </div>
+            <div class="tabs mt-3">
+                <ul class="nav nav-tabs" id="myTab" role="tablist"> 
+                    <li class="nav-item" role="presentation"> 
+                        <a class="nav-link active" id="visa-tab" data-toggle="tab" href="#visa" role="tab" aria-controls="visa" aria-selected="true"> 
+                            <img src="https://i.imgur.com/sB4jftM.png" width="80"> 
+                            </a> 
+                            </li>
+                           
+                                    </ul> 
+                                    <div class="tab-content" id="myTabContent"> 
+                                        <div class="tab-pane fade show active" id="visa" role="tabpanel" aria-labelledby="visa-tab">
+                                            <div class="mt-4 mx-4"> 
+                                                <div class="text-center"> 
+                                                    <h5>Credit card</h5> 
+                                                </div> 
+                                                <form asp-action="Payment" method="post">
+                                            <div class="fields">
+          				<div class="row">
+          				<div class="col-md-6">
+				              <div class="form-group">
+				                <input type="text" class="form-control" name="note" placeholder="Name">
+				              </div>
+			              </div>
+			              <div class="col-md-6">
+				              <div class="form-group">
+				                <input type="text" class="form-control" placeholder="Phone" name="phone">
+				              </div>
+			              </div>
+			              <div class="col-md-6">
+				              <div class="form-group">
+				                <input type="text" id="checkin_date" name="dateTimeFrom" class="form-control" placeholder="Date from">
+				              </div>
+			              </div>
+			              <div class="col-md-6">
+				              <div class="form-group">
+				                <input type="text" id="checkin_date" name="dateTimeTo" class="form-control" placeholder="Date to">
+				              </div>
+				            </div>
+
+			              
+				          
+		              </div>
+		            </div>
+                                                    <div class="form mt-3"> 
+                                                
+                                                <div class="inputbox"> 
+                                                    <input type="text" name="name" class="form-control" required="required"> 
+                                                    <span>Cardholder Name</span> </div> <div class="inputbox"> 
+                                                    <input type="text" name="visa" min="1" pattern="{.,16}" maxlength="16" class="form-control" required="required"> 
+                                                    <span>Card Number</span> 
+                                                    <i class="fa fa-eye"></i> 
+                                                </div> 
+                                                <div class="d-flex flex-row"> 
+                                                    <div class="inputbox"> 
+                                                        <input type="text" id="checkin_date" name="date" min="1" max="999" class="form-control" required="required">
+                                                        <span>Expiration Date</span>
+                                                    </div> 
+                                                    <div class="inputbox"> 
+                                                        <input type="text" name="cvv2" min="1" max="999" pattern="{.,3}" maxlength="3" class="form-control" required="required">
+                                                        <span>CVV</span>
+                                                    </div> 
+                                                    </div>
+                                                    <div class="px-5 pay"> 
+                                                        <button class="btn btn-success btn-block" style="background-color:#f85959;">
+                                                            Add card
+                                                        </button> 
+                                                        </div> 
+                                                        </div> 
+                                                </form>
+                                                        </div> 
+                                                        </div> 
+                                         
+                                                                    </div> 
+                                                                    </div> 
+                                                                    </div> 
+                                                                    </div> 
+                                                                    </div>
+</div>
+    </section> <!-- .section -->

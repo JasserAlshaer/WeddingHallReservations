@@ -1,0 +1,281 @@
+﻿@model IEnumerable<WeddingHallReservations.Models.WService>;
+@{
+	Layout="_Layout";
+     ViewData["Title"] = ViewBag.button;
+    var cus=   ViewBag.customer;
+    var ser=   ViewBag.service ;
+    var prod=  ViewBag.products ;
+    var res=   ViewBag.resrvations;
+}
+
+       <div class="hero-wrap js-fullheight image-banner">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
+          <div class="col-md-9 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><strong>Explore <br></strong> Halls and Cars and More</h1>
+            <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"></p>
+            <div class="block-17 my-4">
+              <form asp-action="SearchPost" method="post" class="d-block d-flex">
+                <div class="fields d-block d-flex">
+                  <div class="textfield-search one-third">
+                  	<input type="text" name="ServiceProvidedName" class="form-control" placeholder="Ex : templates">
+                  </div>
+
+                  <div class="select-wrap one-third">
+                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                    <select name="categoryId" id="" class="form-control" placeholder="Keyword search">
+                      <option value="null">Category</option>
+                      <option value="1">Halls</option>
+                      <option value="3">Cars</option>
+                      <option value="4">Sweet</option>
+                      <option value="2">Musican</option>
+                      
+                    </select>
+                  </div>
+                </div>
+                <input type="submit" class="search-submit btn btn-primary" value="Search">  
+              </form>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="ftco-section services-section bg-light">
+      <div class="container">
+        <div class="row d-flex">
+          <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services d-block text-center">
+              <div class="d-flex justify-content-center"><div class="icon"><span class="flaticon-guarantee"></span></div></div>
+              <div class="media-body p-2 mt-2">
+                <h3 class="heading mb-3">Best Price Guarantee</h3>
+                <p>A small river named Duden flows by their place and supplies.</p>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services d-block text-center">
+              <div class="d-flex justify-content-center"><div class="icon"><span class="flaticon-like"></span></div></div>
+              <div class="media-body p-2 mt-2">
+                <h3 class="heading mb-3">Travellers Love Us</h3>
+                <p>A small river named Duden flows by their place and supplies.</p>
+              </div>
+            </div>    
+          </div>
+          <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services d-block text-center">
+              <div class="d-flex justify-content-center"><div class="icon"><span class="flaticon-detective"></span></div></div>
+              <div class="media-body p-2 mt-2">
+                <h3 class="heading mb-3">Best Travel Agent</h3>
+                <p>A small river named Duden flows by their place and supplies.</p>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services d-block text-center">
+              <div class="d-flex justify-content-center"><div class="icon"><span class="flaticon-support"></span></div></div>
+              <div class="media-body p-2 mt-2">
+                <h3 class="heading mb-3">Our Dedicated Support</h3>
+                <p>A small river named Duden flows by their place and supplies.</p>
+              </div>
+            </div>      
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="ftco-section ftco-destination">
+    	<div class="container">
+    		<div class="row justify-content-start mb-5 pb-3">
+          <div class="col-md-7 heading-section ftco-animate">
+          	<span class="subheading"></span>
+            <h2 class="mb-4"><strong>Service Category</strong></h2>
+          </div>
+        </div>
+    		<div class="row">
+    			<div class="col-md-12">
+    				<div class="destination-slider owl-carousel ftco-animate">
+    					<div class="item">
+		    				<div class="destination">
+		    					<a asp-controller="Main" asp-action="Search"
+                                asp-route-categoryId="1" 
+                                class="img d-flex justify-content-center align-items-center Hall">
+		    						<div class="icon d-flex justify-content-center align-items-center">
+		    							<span class="icon-search2"></span>
+		    						</div>
+		    					</a>
+		    					<div class="text p-3">
+		    							<h3><a asp-controller="Main" asp-action="Search"
+                                asp-route-categoryId="1">Weeding Hall</a></h3>
+		    						
+		    					</div>
+		    				</div>
+	    				</div>
+	    				<div class="item">
+		    				<div class="destination">
+		    					<a <a asp-controller="Main" asp-action="Search"
+                                asp-route-categoryId="3" class="img d-flex justify-content-center align-items-center Cars">
+		    						<div class="icon d-flex justify-content-center align-items-center">
+		    							<span class="icon-search2"></span>
+		    						</div>
+		    					</a>
+		    					<div class="text p-3">
+		    							<h3><a asp-controller="Main" asp-action="Search"
+                                asp-route-categoryId="3">Car Rental Office</a></h3>
+		    					
+		    					</div>
+		    				</div>
+	    				</div>
+
+	    				<div class="item">
+		    				<div class="destination">
+		    					<a asp-controller="Main" asp-action="Search"
+                                asp-route-categoryId="3" class="img d-flex justify-content-center align-items-center Musican">
+		    						<div class="icon d-flex justify-content-center align-items-center">
+		    							<span class="icon-search2"></span>
+		    						</div>
+		    					</a>
+		    					<div class="text p-3">
+		    						<h3><a asp-controller="Main" asp-action="Search"
+                                asp-route-categoryId="2">Musican</a></h3>
+		    	
+		    					</div>
+		    				</div>
+	    				</div>
+
+                         <div class="item">
+		    				<div class="destination">
+		    					<a asp-controller="Main" asp-action="Search"
+                                asp-route-categoryId="4" class="img d-flex justify-content-center align-items-center Sweeta">
+		    						<div class="icon d-flex justify-content-center align-items-center">
+		    							<span class="icon-search2"></span>
+		    						</div>
+		    					</a>
+		    					<div class="text p-3">
+		    						<h3><a asp-controller="Main" asp-action="Search"
+                                asp-route-categoryId="4">Sweet</a></h3>
+		    	
+		    					</div>
+		    				</div>
+	    				</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+
+    <section class="ftco-section bg-light">
+    	<div class="container">
+   		
+    	</div>
+    </section>
+
+    <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(images/bg_1.jpg);">
+    	<div class="container">
+    		<div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+            <h2 class="mb-4">Some fun facts</h2>
+            <span class="subheading">About WHR Web Site</span>
+          </div>
+        </div>
+    		<div class="row justify-content-center">
+    			<div class="col-md-10">
+		    		<div class="row">
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="@cus">0</strong>
+		                <span>Happy Customers</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="@ser">0</strong>
+		                <span>Service</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="@prod">0</strong>
+		                <span>Products</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="@res">0</strong>
+		                <span>Reservaition</span>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+	        </div>
+        </div>
+    	</div>
+    </section>
+
+    <section class="ftco-section">
+    	<div class="container">
+				<div class="row justify-content-start mb-5 pb-3">
+          <div class="col-md-7 heading-section ftco-animate">
+          	<span class="subheading">Latest Services</span>
+            <h2 class="mb-4"><strong>New & Latest Added</strong> Services</h2>
+          </div>
+        </div>    		
+    		<div class="row">
+                @foreach (var item in Model)
+                 {
+                   <div class="col-md-6 col-lg-3 ftco-animate">
+    				<div class="destination">
+                        
+    					<img class="border img img-2 d-flex justify-content-center align-items-center" src="~/Uploads/@item.Service.ProfileImage" alt="image" width="255"/>
+    					<div class="text p-3">
+    						<p><a href="#">
+                                <i class="fa fa-heart"></i>
+                                @item.Service.ServiceProvided</a></p>
+
+    						<p>
+          
+                                <i class="fa fa-money"></i>
+                                Start From : @item.Service.StartingPrice $
+                            </p>
+
+                            <p>
+                                <i class="fa fa-phone"></i>
+                                @item.Service.PhoneNumber
+                            </p>
+                            <p>
+                                <i class="fa fa-location-arrow"></i>
+                                @item.Service.Address
+                            </p>
+    						<hr>
+    						<p class="bottom-area d-flex">
+    							
+    							<span class="btn badge-success" style="width:100%;">
+                                    
+                                    <a asp-controller="Main" asp-action="Details"
+                                asp-route-serviceId="@item.Service.ServiceId">
+                                    View
+                                    <i class="fa fa-eye"></i>    
+                                    </a>
+                                    
+                                </span>
+    						</p>
+    					</div>
+    				</div>
+    			</div>
+               }
+    			
+
+
+          
+    			
+    		</div>
+    	</div>
+    </section>
