@@ -39,16 +39,16 @@
             </div>
             <div class="mb-3">
                 <label>Your Phone</label>
-                <input type="tel" class="input-field" placeholder="0791248519" name="phone" required>
+                <input type="tel" class="input-field" pattern="[07]{2}[7-9]{1}[0-9]{7}" placeholder="0791248519" name="phone" required>
             </div>
             <div class="mb-3">
                 <label>Your Email</label>
-                <input type="email" class="input-field" placeholder="zaid@gmail.com" name="email" required>
+                <input type="email" class="input-field"  placeholder="zaid@gmail.com" name="email" required>
             </div>
             <div class="row">
                 <div class="col-sm-12 mb-3">
                     <label>Password</label>
-                    <input type="password" placeholder="********" name="password" id="pwd" class="input-field">
+                    <input type="password" placeholder="********" name="password" id="pwd" class="input-field" pattern=".{8,}" maxlength="8">
                 </div>
                 <span style="font-size:8px; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">Password Must be at least 8 Words</span>
             </div>
