@@ -21,12 +21,16 @@ namespace WeddingHallReservations.Controllers
 
         public MainController(WHRContext dbObject, IWebHostEnvironment webHost)
         {
+
             this.dbObject = dbObject;
             this.webHost = webHost;
+
         }
 
         public IActionResult Index()
         {
+            sId = 0;
+            listOfSelectedProduct = new Dictionary<int, int>();
             if (HttpContext.Session.GetInt32("UserId") == null)
             {
                 ViewBag.button = "Login";
@@ -56,9 +60,11 @@ namespace WeddingHallReservations.Controllers
             return View(wService.OrderByDescending(x =>x.Service.ServiceId).Take(4));
         }
 
-
         public IActionResult Service()
         {
+
+            sId = 0;
+            listOfSelectedProduct = new Dictionary<int, int>();
             if (HttpContext.Session.GetInt32("UserId") == null)
             {
                 ViewBag.button = "Login";
@@ -112,12 +118,12 @@ namespace WeddingHallReservations.Controllers
             else if (categoryId == null && startPrice == null
             && Address != null && ServiceProvidedName == null)
             {
-                service = dbObject.Service.Where(x => x.Address.Equals(Address)).ToList();
+                service = dbObject.Service.Where(x => x.Address.Contains(Address)).ToList();
 
             }
             else if (categoryId == null && startPrice == null && Address != null && ServiceProvidedName != null)
             {
-                service = dbObject.Service.Where(x => x.Address.Equals(Address) && x.ServiceProvided.Contains(ServiceProvidedName)).ToList();
+                service = dbObject.Service.Where(x => x.Address.Contains(Address) && x.ServiceProvided.Contains(ServiceProvidedName)).ToList();
 
             }
             else if (categoryId == null && startPrice != null && Address == null && ServiceProvidedName == null)
@@ -134,13 +140,13 @@ namespace WeddingHallReservations.Controllers
             else if (categoryId == null && startPrice != null
             && Address != null && ServiceProvidedName == null)
             {
-                service = dbObject.Service.Where(x => x.StartingPrice >= startPrice && x.Address.Equals(Address)).ToList();
+                service = dbObject.Service.Where(x => x.StartingPrice >= startPrice && x.Address.Contains(Address)).ToList();
 
             }
             else if (categoryId == null && startPrice != null
             && Address != null && ServiceProvidedName != null)
             {
-                service = dbObject.Service.Where(x => x.StartingPrice >= startPrice && x.Address.Equals(Address) && x.ServiceProvided.Contains(ServiceProvidedName)).ToList();
+                service = dbObject.Service.Where(x => x.StartingPrice >= startPrice && x.Address.Contains(Address) && x.ServiceProvided.Contains(ServiceProvidedName)).ToList();
 
             }
             else if (categoryId != null && startPrice == null
@@ -160,13 +166,13 @@ namespace WeddingHallReservations.Controllers
             else if (categoryId != null && startPrice == null
             && Address != null && ServiceProvidedName == null)
             {
-                service = dbObject.Service.Where(x => x.CategoryId == categoryId && x.Address.Equals(Address)).ToList();
+                service = dbObject.Service.Where(x => x.CategoryId == categoryId && x.Address.Contains(Address)).ToList();
             }
 
             else if (categoryId != null && startPrice == null
             && Address != null && ServiceProvidedName != null)
             {
-                service = dbObject.Service.Where(x => x.CategoryId == categoryId && x.Address.Equals(Address) && x.ServiceProvided.Contains(ServiceProvidedName)).ToList();
+                service = dbObject.Service.Where(x => x.CategoryId == categoryId && x.Address.Contains(Address) && x.ServiceProvided.Contains(ServiceProvidedName)).ToList();
             }
             else if (categoryId != null && startPrice != null
             && Address == null && ServiceProvidedName == null)
@@ -183,13 +189,13 @@ namespace WeddingHallReservations.Controllers
             else if (categoryId != null && startPrice != null
             && Address != null && ServiceProvidedName == null)
             {
-                service = dbObject.Service.Where(x => x.CategoryId == categoryId && x.Address.Equals(Address) && x.StartingPrice >= startPrice).ToList();
+                service = dbObject.Service.Where(x => x.CategoryId == categoryId && x.Address.Contains(Address) && x.StartingPrice >= startPrice).ToList();
             }
 
             else if (categoryId != null && startPrice != null
             && Address != null && ServiceProvidedName != null)
             {
-                service = dbObject.Service.Where(x => x.CategoryId == categoryId && x.Address.Equals(Address) && x.StartingPrice >= startPrice
+                service = dbObject.Service.Where(x => x.CategoryId == categoryId && x.Address.Contains(Address) && x.StartingPrice >= startPrice
                 && x.ServiceProvided.Contains(ServiceProvidedName)).ToList();
             }
 
@@ -221,7 +227,7 @@ namespace WeddingHallReservations.Controllers
             var service = dbObject.Service.ToList();
             var category = dbObject.Catregory.ToList();
             if (categoryId==null && startPrice ==null
-            && Address.Equals(null) && ServiceProvidedName == null){
+            && Address == null && ServiceProvidedName == null){
                  service = dbObject.Service.ToList();
             }
             else if (categoryId == null && startPrice == null
@@ -233,12 +239,12 @@ namespace WeddingHallReservations.Controllers
             else if (categoryId == null && startPrice == null
             && Address != null && ServiceProvidedName == null)
             {
-                service = dbObject.Service.Where(x => x.Address.Equals(Address)).ToList();
+                service = dbObject.Service.Where(x => x.Address.Contains(Address)).ToList();
                 
             }
             else if (categoryId == null && startPrice == null&& Address != null && ServiceProvidedName != null)
             {
-                service = dbObject.Service.Where(x => x.Address.Equals(Address) && x.ServiceProvided.Contains(ServiceProvidedName)).ToList();
+                service = dbObject.Service.Where(x => x.Address.Contains(Address) && x.ServiceProvided.Contains(ServiceProvidedName)).ToList();
                 
             }
             else if (categoryId == null && startPrice != null && Address == null && ServiceProvidedName == null)
@@ -255,13 +261,13 @@ namespace WeddingHallReservations.Controllers
             else if (categoryId == null && startPrice != null
             && Address != null && ServiceProvidedName == null)
             {
-                service = dbObject.Service.Where(x => x.StartingPrice >= startPrice && x.Address.Equals(Address)).ToList();
+                service = dbObject.Service.Where(x => x.StartingPrice >= startPrice && x.Address.Contains(Address)).ToList();
               
             }
             else if (categoryId == null && startPrice != null
             && Address != null && ServiceProvidedName != null)
             {
-                service = dbObject.Service.Where(x => x.StartingPrice >= startPrice && x.Address.Equals(Address) &&  x.ServiceProvided.Contains(ServiceProvidedName)).ToList();
+                service = dbObject.Service.Where(x => x.StartingPrice >= startPrice && x.Address.Contains(Address) &&  x.ServiceProvided.Contains(ServiceProvidedName)).ToList();
                
             }
             else if (categoryId != null && startPrice == null
@@ -281,13 +287,13 @@ namespace WeddingHallReservations.Controllers
             else if (categoryId != null && startPrice == null
             && Address != null && ServiceProvidedName == null)
             {
-                service = dbObject.Service.Where(x => x.CategoryId == categoryId && x.Address.Equals(Address)).ToList();
+                service = dbObject.Service.Where(x => x.CategoryId == categoryId && x.Address.Contains(Address)).ToList();
             }
 
             else if (categoryId != null && startPrice == null
             && Address != null && ServiceProvidedName != null)
             {
-                service = dbObject.Service.Where(x => x.CategoryId == categoryId && x.Address.Equals(Address) && x.ServiceProvided.Contains(ServiceProvidedName) ).ToList();
+                service = dbObject.Service.Where(x => x.CategoryId == categoryId && x.Address.Contains(Address) && x.ServiceProvided.Contains(ServiceProvidedName) ).ToList();
             }
             else if (categoryId != null && startPrice != null
             && Address == null && ServiceProvidedName == null)
@@ -304,13 +310,13 @@ namespace WeddingHallReservations.Controllers
             else if (categoryId != null && startPrice != null
             && Address != null && ServiceProvidedName == null)
             {
-                service = dbObject.Service.Where(x => x.CategoryId == categoryId && x.Address.Equals(Address) && x.StartingPrice >= startPrice).ToList();
+                service = dbObject.Service.Where(x => x.CategoryId == categoryId && x.Address.Contains(Address) && x.StartingPrice >= startPrice).ToList();
             }
 
             else if (categoryId != null && startPrice != null
             && Address != null && ServiceProvidedName != null)
             {
-                service = dbObject.Service.Where(x => x.CategoryId == categoryId && x.Address.Equals(Address) && x.StartingPrice >= startPrice
+                service = dbObject.Service.Where(x => x.CategoryId == categoryId && x.Address.Contains(Address) && x.StartingPrice >= startPrice
                 && x.ServiceProvided.Contains(ServiceProvidedName)).ToList();
             }
             var wService = from c in category
@@ -327,6 +333,8 @@ namespace WeddingHallReservations.Controllers
 
         public IActionResult Details(int serviceId)
         {
+            //sId = 0;
+            //listOfSelectedProduct = new Dictionary<int, int>();
 
             if (HttpContext.Session.GetInt32("UserId") == null)
             {
@@ -469,8 +477,9 @@ namespace WeddingHallReservations.Controllers
 
         public IActionResult History()
         {
-
-            if(HttpContext.Session.GetInt32("UserId") == null)
+            sId = 0;
+            listOfSelectedProduct = new Dictionary<int, int>();
+            if (HttpContext.Session.GetInt32("UserId") == null)
             {
                 ViewBag.button = "Login";
                 return RedirectToAction("Login");
@@ -501,6 +510,7 @@ namespace WeddingHallReservations.Controllers
 
         public IActionResult ManageListOfProdcts(int productId,int bit,int quantity)
         {
+            //listOfSelectedProduct = new Dictionary<int, int>();
             if (HttpContext.Session.GetInt32("UserId") == null)
             {
                 ViewBag.button = "Login";
@@ -525,12 +535,24 @@ namespace WeddingHallReservations.Controllers
             }
             else
             {
-                listOfSelectedProduct[productId] = listOfSelectedProduct[productId] - 1;
+                if (listOfSelectedProduct.ContainsKey(productId))
+                {
+                    if ((listOfSelectedProduct[productId] = listOfSelectedProduct[productId] - 1) == 0)
+                    {
+                        listOfSelectedProduct.Remove(productId);
+                    }
+                    else
+                    {
+                        listOfSelectedProduct[productId] = listOfSelectedProduct[productId] - 1;
+                    }
+                }
+               
+               
             }
-           
-            
 
 
+
+            amount = 0;
             for (int index = 0; index < listOfSelectedProduct.Count; index++)
             {
                 var item = listOfSelectedProduct.ElementAt(index);
@@ -547,6 +569,8 @@ namespace WeddingHallReservations.Controllers
         public IActionResult Login()
         {
             //Login View
+            sId = 0;
+            listOfSelectedProduct = new Dictionary<int, int>();
             return View();
         }
         [HttpPost]
@@ -570,6 +594,8 @@ namespace WeddingHallReservations.Controllers
         public IActionResult Register()
         {
             //Register View
+            sId = 0;
+            listOfSelectedProduct = new Dictionary<int, int>();
             return View();
         }
         [HttpPost]
@@ -592,10 +618,6 @@ namespace WeddingHallReservations.Controllers
             }
           
         }
-
-
-
-
 
 
         public IActionResult Logout()

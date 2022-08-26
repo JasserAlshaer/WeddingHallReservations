@@ -10,7 +10,7 @@
 
 body {
     background: #fff;
-    min-height: 100vh;
+    background-image: url('../Images/register-back.jfif');
 }
 
 .wrapper {

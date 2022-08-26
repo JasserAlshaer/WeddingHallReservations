@@ -12,12 +12,12 @@
         
           <div class="col-lg-12">
           	<div class="row">
-				  @foreach (var item in Model)
+				 @foreach (var item in Model)
 				 {
-					  <div class="col-md-4 ftco-animate">
+					  <div class="col-lg-6 col-md-12 col-sm-12 ftco-animate">
     				<div class="destination">
                         
-    					<img class="border img img-2 d-flex justify-content-center align-items-center" src="~/Uploads/@item.Service.ProfileImage" alt="image" width="255"/>
+    					<img class="card-img-top border" height="220" src="~/Uploads/@item.Service.ProfileImage" alt="image" width="255"/>
     					<div class="text p-3">
     						<p><a asp-controller="Main" asp-action="Details"
                                 asp-route-serviceId="item.Service.ServiceId">
@@ -27,16 +27,23 @@
     						<p>
           
                                 <i class="fa fa-money"></i>
-                                Start From : @item.Service.StartingPrice $
+                                  Total Price : @item.Reservaition.TotalPrice $
                             </p>
 
                             <p>
+                                Phone 
                                 <i class="fa fa-phone"></i>
-                                @item.Service.PhoneNumber
+                               : @item.Service.PhoneNumber
                             </p>
                             <p>
+                                Location 
                                 <i class="fa fa-location-arrow"></i>
-                                @item.Service.Address
+                               :  @item.Service.Address
+                            </p>
+                             <p>
+                                 Date
+                               <i class="fa fa-calendar"></i>
+                                @item.Reservaition.ReservaitionDateFrom - @item.Reservaition.ReservaitionDateTo
                             </p>
     						<hr>
     						@*<p class="bottom-area d-flex">

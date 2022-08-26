@@ -14,7 +14,7 @@
       <div class="container">
         <div class="row">
         	
-          <div class="offset-2 col-lg-10">
+          <div class="col-lg-12">
           	<div class="row">
           		<div class="col-md-12 ftco-animate">
           			<div class="single-slider owl-carousel">
@@ -76,10 +76,10 @@
 						{
 							@foreach (var item2 in item.Medias)
 						   {
-                               @if(item2.IsMain==true){
+                               @if(item2.IsMain==true && item2.ProductId == @item.Prodouct.ProductId){
                                     <div class="item">
-          					     <img class="border img img-2 d-flex justify-content-center align-items-center" src="~/Uploads/@item2.ImagePath" alt="image" width="277"/>
-          				      </div>
+          					          <img class="card-img-top border" height="220" src="~/Uploads/@item2.ImagePath" alt="image" width="277"/>
+          				            </div>
                                }
 							 
 						   }
@@ -113,12 +113,13 @@
     							
     							
 
-                                 
+                                 <div class="row">
                                     
                                     <a asp-controller="Main" asp-action="ManageListOfProdcts"
                                        asp-route-productId="@item3.Prodouct.ProductId"
                                        asp-route-bit="10"
                                        asp-route-quantity="1"
+                                       class="col-5"
                                      style="margin-left:20px;">
                                        <span class="btn badge-success" style="width:100%;">
                                             Add
@@ -127,21 +128,22 @@
                                    
                                     </a>
                                     
-                                <br>
+                               
                                
                                     
                                     <a asp-controller="Main" asp-action="ManageListOfProdcts"
                                        asp-route-productId="@item3.Prodouct.ProductId"
                                        asp-route-bit="1"
                                         asp-route-quantity="1"
-                                       style="margin-left:50px;"
+                                        class="col-6"
+                                      
                                     >
                                      <span class="btn badge-danger" style="width:100%;">
                                           Remove
                                     <i class="fa fa-trush text-center"></i>
                                 </span>
                                     </a>
-                                    
+                                 </div>   
     						</p>
     					</div>
     				</div>
@@ -156,7 +158,7 @@
           	</div>
           </div> <!-- .col-md-8 -->
        
-		  <div class="offset-2 col-10 hotel-single ftco-animate mb-5 mt-4">
+		  <div class="col-lg-12 col-md-12 hotel-single ftco-animate mb-5 mt-4">
           			<h4 class="mb-5">Booking Your Service</h4>
                        <h4 class="mb-5">Total Price = @tot</h4>
                       <form asp-action="DataServed" method="post" >
